@@ -1,4 +1,4 @@
-package com.example.testing.myiocdemo;
+package com.nhdiscourse;
 
 import android.app.Application;
 

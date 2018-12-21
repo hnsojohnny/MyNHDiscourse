@@ -30,4 +30,5 @@ dependencies {
     implementation project(':mylibrary')
     implementation 'org.sufficientlysecure:html-textview:3.6'
     implementation project(':dexfixlib')
+    implementation project(':alertdialog')
 }

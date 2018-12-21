@@ -1,4 +1,4 @@
-package com.example.testing.myiocdemo;
+package com.nhdiscourse;
 
 import android.content.Context;
 import android.content.SharedPreferences;

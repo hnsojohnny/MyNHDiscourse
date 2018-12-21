@@ -1,9 +1,10 @@
-package com.example.testing.myiocdemo;
+package com.nhdiscourse;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
+
+import com.alertdialog.AlertDialog;
 import com.dexfixlib.FixDexUtils;
 import com.mylibrary.LayoutById;
 import com.mylibrary.ViewById;
@@ -48,7 +49,11 @@ public class MainActivity extends AppCompatActivity {
     private void setOnClick(View view){
         switch (view.getId()){
             case R.id.text_tv:
-                Toast.makeText(MainActivity.this, "点击事件", Toast.LENGTH_SHORT).show();
+                new AlertDialog.Builder(MainActivity.this, R.style.MyDialog)
+                        .setContentView(R.layout.dialog_layout)
+                        .formBottom()
+                        .setWidth(0.9f)
+                        .show();
                 break;
             default:
                 break;
