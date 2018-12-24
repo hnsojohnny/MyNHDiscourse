@@ -3,6 +3,7 @@ package com.nhdiscourse;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.alertdialog.AlertDialog;
 import com.dexfixlib.FixDexUtils;
@@ -51,8 +52,22 @@ public class MainActivity extends AppCompatActivity {
             case R.id.text_tv:
                 new AlertDialog.Builder(MainActivity.this, R.style.MyDialog)
                         .setContentView(R.layout.dialog_layout)
+                        .setText(R.id.title_tv, "请输入账号")
+                        .setText(R.id.centent_tv, "请输入密码")
+                        .setOnClickListener(R.id.title_tv, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Toast.makeText(MainActivity.this, "这是账号", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setOnClickListener(R.id.centent_tv, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Toast.makeText(MainActivity.this, "这是密码", Toast.LENGTH_SHORT).show();
+                            }
+                        })
                         .formBottom()
-                        .setWidth(0.9f)
+                        .setWidthPercent(1)
                         .show();
                 break;
             default:

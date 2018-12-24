@@ -19,7 +19,7 @@ public class AlertDialog extends Dialog{
 
     protected AlertDialog( Context context, int themeResId) {
         super(context, themeResId);
-        alertController = new AlertController(getContext(), this, getWindow());
+        alertController = new AlertController(this, this.getWindow());
     }
 
     @Override
@@ -78,13 +78,8 @@ public class AlertDialog extends Dialog{
             return this;
         }
 
-        public Builder fullWidth(boolean isFull){
-            this.p.isFull = isFull;
-            return this;
-        }
-
-        public Builder setWidth(float width){
-            this.p.width = width;
+        public Builder setWidthPercent(float widthPercent){
+            this.p.widthPercent = widthPercent;
             return this;
         }
 

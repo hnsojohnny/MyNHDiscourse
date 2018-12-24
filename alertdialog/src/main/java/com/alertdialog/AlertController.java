@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import java.lang.ref.WeakReference;
 
@@ -20,14 +21,11 @@ import java.lang.ref.WeakReference;
  */
 public class AlertController {
 
-    private Context mContext;
     private Dialog mDialog;
     private Window mWindow;
     private View mView;
-    private int mViewLayoutId;
 
-    public AlertController(Context context, Dialog dialog, Window window) {
-        this.mContext = context;
+    public AlertController( Dialog dialog, Window window) {
         this.mDialog = dialog;
         this.mWindow = window;
     }
@@ -49,7 +47,6 @@ public class AlertController {
     public static class AlertParams{
 
         public View view;
-        public int viewLayoutId;
         public Context context;
         /**比HashMap要高效*/
         public SparseArray<CharSequence> textArray = new SparseArray<>();
@@ -61,8 +58,8 @@ public class AlertController {
         public DialogInterface.OnDismissListener mOnDismissListener;
         public DialogInterface.OnKeyListener mOnKeyListener;
         public int mGravity = Gravity.CENTER;
-        public boolean isFull = false;
-        public float width = 0;
+        public int viewLayoutId;
+        public float widthPercent = 0;
 
         public AlertParams(Context mContext, int themeResId) {
             this.context = mContext;
@@ -70,19 +67,28 @@ public class AlertController {
         }
 
         public void apply(AlertController dialog){
-            if(view != null){
-                dialog.setmView(view);
-            }else if(viewLayoutId != 0){
+            if(view == null){
                 view = LayoutInflater.from(context).inflate(viewLayoutId, null);
-                dialog.setmView(view);
             }
+            if(textArray.size() > 0){
+                for(int i = 0;i<textArray.size();i++){
+                    ((TextView)view.findViewById(textArray.keyAt(i))).setText(textArray.get(textArray
+                    .keyAt(i)));
+                }
+            }
+            if(listenerArray.size() > 0){
+                for(int i = 0;i<listenerArray.size();i++){
+                    view.findViewById(listenerArray.keyAt(i)).setOnClickListener(
+                            listenerArray.get(listenerArray.keyAt(i)).get());
+                }
+            }
+            dialog.setmView(view);
             Window window = dialog.getmWindow();
             window.setGravity(mGravity);
-            if(isFull){
-                view.setMinimumWidth(window.getWindowManager().getDefaultDisplay().getWidth());
-            }else{
-                view.setMinimumWidth((int) (window.getWindowManager().getDefaultDisplay().getWidth() * width));
-            }
+            window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            view.setMinimumWidth((int) (window.getWindowManager().getDefaultDisplay().getWidth() * widthPercent));
         }
+
     }
+
 }
