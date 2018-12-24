@@ -1,16 +1,15 @@
 package com.alertdialog;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.util.DisplayMetrics;
 import android.util.SparseArray;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.TextView;
 
 import java.lang.ref.WeakReference;
@@ -66,6 +65,7 @@ public class AlertController {
             this.themeResId = themeResId;
         }
 
+        @SuppressLint("ResourceType")
         public void apply(AlertController dialog){
             if(view == null){
                 view = LayoutInflater.from(context).inflate(viewLayoutId, null);
@@ -85,6 +85,7 @@ public class AlertController {
             dialog.setmView(view);
             Window window = dialog.getmWindow();
             window.setGravity(mGravity);
+            window.setWindowAnimations(R.style.AlertDialogAnim);
             window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             view.setMinimumWidth((int) (window.getWindowManager().getDefaultDisplay().getWidth() * widthPercent));
         }
