@@ -1,1 +1,1 @@
-include ':app', ':mylibrary', ':dexfixlib', ':alertdialog'
+include ':app', ':mylibrary', ':dexfixlib', ':alertdialog', ':navigationbar'
