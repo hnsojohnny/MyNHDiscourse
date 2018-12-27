@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         FixDexUtils.fixSingleDexBug(this);
 
         new DefaultNavigationBar.Builder(this, (ViewGroup) findViewById(R.id.view_group))
+                .setTitle("这是标题")
                 .builder();
     }
 
