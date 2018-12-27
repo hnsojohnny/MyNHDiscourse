@@ -3,6 +3,7 @@ package com.nhdiscourse;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.alertdialog.AlertDialog;
@@ -29,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
         ViewUtils.inject(this);
         initData();
         FixDexUtils.fixSingleDexBug(this);
+
+        new DefaultNavigationBar.Builder(this, (ViewGroup) findViewById(R.id.view_group))
+                .builder();
     }
 
     private void initData(){
