@@ -1,6 +1,8 @@
 package com.nhdiscourse;
 
+import android.app.Activity;
 import android.content.Context;
+import android.view.View;
 import android.view.ViewGroup;
 
 /**
@@ -32,6 +34,11 @@ public class DefaultNavigationBar extends AbsNavigationBar<DefaultNavigationBar.
             params = new DefaultNavigationParams(context, parent);
         }
 
+        public Builder(Context context){
+            super(context, null);
+            params = new DefaultNavigationParams(context, null);
+        }
+
         @Override
         public DefaultNavigationBar builder() {
             DefaultNavigationBar navigationBar = new DefaultNavigationBar(params);
@@ -53,11 +60,22 @@ public class DefaultNavigationBar extends AbsNavigationBar<DefaultNavigationBar.
             return this;
         }
 
+        public DefaultNavigationBar.Builder setLeftOnClickListener(View.OnClickListener onClickListener){
+            params.onClickListener = onClickListener;
+            return this;
+        }
+
         public class DefaultNavigationParams extends AbsNavigationBar.Builder.AbsNavigationBarParams{
 
             public String title;
             public String leftTxt;
             public String rightTxt;
+            public View.OnClickListener onClickListener = new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((Activity) context).finish();
+                }
+            };
 
             public DefaultNavigationParams(Context context, ViewGroup parent) {
                 super(context, parent);

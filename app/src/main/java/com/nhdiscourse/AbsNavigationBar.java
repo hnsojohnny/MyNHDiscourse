@@ -1,5 +1,6 @@
 package com.nhdiscourse;
 
+import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -37,6 +38,13 @@ public abstract class AbsNavigationBar<P extends AbsNavigationBar.Builder.AbsNav
     }
 
     private void createAndBindView() {
+        if(mParams.viewGroup == null){
+            ViewGroup activityRoot = ((Activity)mParams.context).findViewById(android.R.id.content);
+            mParams.viewGroup = (ViewGroup) activityRoot.getChildAt(0);
+        }
+        if(mParams.viewGroup == null){
+            return;
+        }
         mNavigationView = LayoutInflater.from(mParams.context).inflate(bindLayoutID(),
                 mParams.viewGroup, false);
         mParams.viewGroup.addView(mNavigationView, 0);
