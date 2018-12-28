@@ -23,6 +23,7 @@ public class DefaultNavigationBar extends AbsNavigationBar<DefaultNavigationBar.
     @Override
     public void applyView() {
         setText(R.id.title_tv, getParams().title);
+        setOnClickListener(R.id.back_tv, getParams().leftOnlickListener);
     }
 
     public static class Builder extends AbsNavigationBar.Builder{
@@ -60,8 +61,8 @@ public class DefaultNavigationBar extends AbsNavigationBar<DefaultNavigationBar.
             return this;
         }
 
-        public DefaultNavigationBar.Builder setLeftOnClickListener(View.OnClickListener onClickListener){
-            params.onClickListener = onClickListener;
+        public DefaultNavigationBar.Builder setLeftOnClickListener(View.OnClickListener leftOnlickListener){
+            params.leftOnlickListener = leftOnlickListener;
             return this;
         }
 
@@ -70,7 +71,7 @@ public class DefaultNavigationBar extends AbsNavigationBar<DefaultNavigationBar.
             public String title;
             public String leftTxt;
             public String rightTxt;
-            public View.OnClickListener onClickListener = new View.OnClickListener() {
+            public View.OnClickListener leftOnlickListener = new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     ((Activity) context).finish();

@@ -33,6 +33,10 @@ public abstract class AbsNavigationBar<P extends AbsNavigationBar.Builder.AbsNav
         }
     }
 
+    protected void setOnClickListener(int viewID, View.OnClickListener onClickListener){
+        findViewById(viewID).setOnClickListener(onClickListener);
+    }
+
     private <T extends View> T findViewById(int viewId) {
         return (T) mNavigationView.findViewById(viewId);
     }
