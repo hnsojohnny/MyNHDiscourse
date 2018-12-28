@@ -1,0 +1,3 @@
+# builder链式调用
+### 真正让用户使用的类不能直接用构造器,而是利用builder来创建,builder是传递给params参数的类,比如:dialog.builder().set.....
+### 而params则是利用参数给各个控件赋值的.
