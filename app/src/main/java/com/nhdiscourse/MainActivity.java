@@ -17,7 +17,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
-@LayoutById(R.layout.activity_main)
+@LayoutById(R.layout.check_layout)
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @ViewOnClick(R.id.text_tv)
+//    @ViewOnClick(R.id.text_tv)
     private void setOnClick(View view){
         switch (view.getId()){
             case R.id.text_tv:
