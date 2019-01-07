@@ -5,19 +5,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import com.alertdialog.AlertDialog;
 import com.dexfixlib.FixDexUtils;
 import com.mylibrary.LayoutById;
 import com.mylibrary.ViewById;
-import com.mylibrary.ViewOnClick;
 import com.mylibrary.ViewUtils;
+import com.nhdiscourse.view.MCheckBox;
 import org.sufficientlysecure.htmltextview.HtmlTextView;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
-@LayoutById(R.layout.check_layout)
+@LayoutById(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
@@ -30,10 +29,15 @@ public class MainActivity extends AppCompatActivity {
         ViewUtils.inject(this);
         initData();
         FixDexUtils.fixSingleDexBug(this);
-
+        View view = findViewById(R.id.view_group);
         new DefaultNavigationBar.Builder(this)
                 .setTitle("这是标题")
                 .builder();
+        new MCheckBox.Builder(this).setBackgroundDrawable(R.drawable.pay_select)
+                .setContent("是否上传到保险公司")
+                .setViewGroup((ViewGroup) view)
+                .setStatus(MCheckBox.Builder.Status.MUST_CHECK)
+        .builder();
     }
 
     private void initData(){
