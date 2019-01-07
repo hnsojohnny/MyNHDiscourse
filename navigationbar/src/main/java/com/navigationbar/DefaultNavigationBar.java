@@ -1,4 +1,4 @@
-package com.nhdiscourse;
+package com.navigationbar;
 
 import android.app.Activity;
 import android.content.Context;
